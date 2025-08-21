@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YoungSky</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url("{{ url_for('static', filename='img/fondoview1.PNG') }}") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .section {
+      padding: 60px 30px;
+    }
+
+    .intro-text {
+      text-align: center;
+      padding: 80px 20px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .intro-text h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .intro-text p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn-animated {
+      background: #247ca5;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 30px;
+      border: none;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-animated:hover {
+      background: #49e05d;
+      transform: scale(1.05);
+    }
+
+    .who-we-are, .extra-packages, .promo-section {
+      background-color: rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .who-we-are h2, .extra-packages h2, .promo-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .who-we-are p, .extra-packages p, .promo-section p {
+      font-size: 16px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .offers-section {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .offers-section h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .offer-box {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .offer-box:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .offer-box img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .extra-packages .row .col-md-6 {
+      margin-bottom: 30px;
+    }
+
+    .extra-packages img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      background-color: #ccc;
+    }
+
+    .carousel-inner > .item > img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .benefits {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .benefits h2 {
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .benefit-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .benefit-item i {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .benefit-item h4 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .benefit-item p {
+      font-size: 14px;
+    }
+
+    .navbar-custom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .navbar-custom .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .navbar-custom .logo span {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar-custom .login a {
+      padding: 8px 20px;
+      background-color: #247ca5;
+      color: white;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .navbar-custom .login a:hover {
+      background-color: #49e05d;
+    }
+
+    .main-footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #ccc;
+      padding: 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .main-footer .footer-left,
+    .main-footer .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .main-footer h4 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .main-footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-footer ul li {
+      margin-bottom: 5px;
+    }
+
+    footer.copyright {
+      text-align: center;
+      padding: 10px;
+      background-color: #111;
+      color: #aaa;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar-custom">
+    <div class="logo" style="display: flex; align-items: center;">
+      <img src="{{ url_for('static', filename='img/YK1.PNG') }}" alt="Logo">
+      <span>YoungSky</span>
+    </div>
+    <div class="login">
+      <a href="/login">Iniciar sesión</a>
+    </div>
+  </div>
+
+  <section class="intro-text">
+    <h1>Descubre el mundo con YoungSky</h1>
+    <p>Reserva paquetes completos de viaje con vuelos y hospedaje en un solo lugar.</p>
+    <a href="/reservar"><button class="btn-animated">¡Reserva ahora!</button></a>
+  </section>
+
+  <section class="section who-we-are">
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos una plataforma pensada para el viajero moderno: rápida, sencilla y confiable. En YoungSky te ayudamos a encontrar paquetes de vuelo + hospedaje que se adaptan a tu presupuesto y estilo de viaje.</p>
+  </section>
+
+  <section class="section offers-section">
+    <h2>Ofertas de temporada</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 offer-box">
+          <img src="{{ url_for('static', filename='img/Barcelona.jpg') }}" alt="Barcelona">
+          <h4>Barcelona</h4>
+          <p>Desde $450 USD · Vuelo + Hotel · 5 noches</p>
+        </div>
+        <div class="col-md-4 offer-box">
+          <img src="{{ url_for('static', filename='img/Paris.jpg') }}" alt="París">
+          <h4>París</h4>
+          <p>Desde $520 USD · Vuelo + Hotel · 6 noches</p>
+        </div>
+        <div class="col-md-4 offer-box">
+          <img src="{{ url_for('static', filename='img/Japon.jpg') }}" alt="Tokio">
+          <h4>Tokio</h4>
+          <p>Desde $750 USD · Vuelo + Hotel · 7 noches</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section extra-packages">
+    <h2>Paquetes adicionales</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{{ url_for('static', filename='img/Newyork.JPG') }}" alt="New York">
+          <h4>New York</h4>
+          <p>Desde $680 USD · Vuelo + Hotel · 4 noches</p>
+        </div>
+        <div class="col-md-6">
+          <img src="{{ url_for('static', filename='img/Roma.JPG') }}" alt="Roma">
+          <h4>Roma</h4>
+          <p>Desde $590 USD · Vuelo + Hotel · 5 noches</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section offers-section">
+    <h2>Promocionales de marca</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+      Aquí puedes agregar futuras tablas, promociones especiales o elementos visuales de marketing de la marca YoungSky.
+    </p>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered" style="background-color: rgba(255,255,255,0.05); color: #fff; border-radius: 10px; overflow: hidden;">
+          <thead style="background-color: rgba(255,255,255,0.1); font-weight: bold;">
+            <tr>
+              <th>Nombre del paquete</th>
+              <th>Incluye</th>
+              <th>Precio</th>
+              <th>Duración</th>
+              <th>Disponibilidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Escápate a París</td>
+              <td>Vuelo redondo + Hotel 4*</td>
+              <td>$620 USD</td>
+              <td>6 días / 5 noches</td>
+              <td>Todo el año</td>
+            </tr>
+            <tr>
+              <td>Aventura en Japón</td>
+              <td>Vuelo + Hotel + Tour de cultura</td>
+              <td>$950 USD</td>
+              <td>7 días / 6 noches</td>
+              <td>Marzo - Mayo</td>
+            </tr>
+            <tr>
+              <td>Riviera Maya Relax</td>
+              <td>Vuelo + Resort todo incluido</td>
+              <td>$480 USD</td>
+              <td>5 días / 4 noches</td>
+              <td>Temporada baja</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section benefits">
+    <h2>¿Por qué elegir YoungSky?</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 benefit-item">
+          <i class="glyphicon glyphicon-time"></i>
+          <h4>Ahorra tiempo</h4>
+          <p>Todo en un solo lugar. Olvídate de comparar en mil sitios.</p>
+        </div>
+        <div class="col-sm-4 benefit-item">
+          <i class="glyphicon glyphicon-phone"></i>
+          <h4>Fácil de usar</h4>
+          <p>Diseño intuitivo y accesible desde cualquier dispositivo.</p>
+        </div>
+        <div class="col-sm-4 benefit-item">
+          <i class="glyphicon glyphicon-globe"></i>
+          <h4>Opciones globales</h4>
+          <p>Viaja por todo el mundo con ofertas personalizadas para ti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="main-footer">
+    <div class="footer-left">
+      México · Español (MX) · MXN
+    </div>
+    <div class="footer-column">
+      <ul>
+        <li>Ayuda</li>
+        <li>Configuración de privacidad</li>
+        <li>Iniciar sesión</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <ul>
+        <li>Política de cookies</li>
+        <li>Política de privacidad</li>
+        <li>Términos de servicio</li>
+        <li>Información de la empresa</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <ul>
+        <li>Explorar</li>
+        <li>Compañía</li>
+        <li>Partners</li>
+        <li>Viajes</li>
+        <li>Sitios internacionales</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="copyright">
+    © 2025 YoungSky – Tu aventura comienza aquí ✈️
+  </footer>
+</body>
+</html>

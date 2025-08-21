@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes - YoungSKY Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-4">
+    <h3>Solicitudes de Reserva</h3>
+
+    {% if solicitudes %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th>Ruta</th>
+          <th>Fecha de Reserva</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for solicitud in solicitudes %}
+        <tr>
+          <td>{{ solicitud.id }}</td>
+          <td>{{ solicitud.usuario_id }}</td> <!-- O el nombre del cliente -->
+          <td>{{ solicitud.origen }} → {{ solicitud.destino }}</td>
+          <td>{{ solicitud.created_at }}</td>
+          <td>
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ solicitud.id }}">Ver Solicitud</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+      No hay solicitudes pendientes.
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Modal para ver detalles de la solicitud -->
+  {% for solicitud in solicitudes %}
+  <div class="modal fade" id="modal{{ solicitud.id }}" tabindex="-1" aria-labelledby="modalLabel{{ solicitud.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel{{ solicitud.id }}">Detalles de la Solicitud #{{ solicitud.id }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Ruta:</strong> {{ solicitud.origen }} → {{ solicitud.destino }}</p>
+          <p><strong>Fecha de Reserva:</strong> {{ solicitud.created_at }}</p>
+          <form action="/admin/completar_reserva/{{ solicitud.id }}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="evidencia" class="form-label">Adjuntar Evidencia de Compra</label>
+              <input type="file" class="form-control" id="evidencia" name="evidencia">
+            </div>
+            <button type="submit" class="btn btn-success">Marcar como Completo</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscador de Vuelos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+    }
+
+    .hero {
+      background-image: url('https://josepesteveguia.com/wp-content/uploads/2022/12/alpinismo-ordesa-monteperdido.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 100px 20px 150px;
+      position: relative;
+    }
+
+    .search-box {
+      background-color: #69a4a7;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 1000px;
+      margin: auto;
+      margin-top: 30px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .search-box .form-control, .search-box .btn {
+      border-radius: 8px;
+    }
+
+    .nav-link, .navbar-brand, .btn {
+      color: white !important;
+    }
+
+    .nav-link.active {
+      background-color: #0a5b5e;
+      border-radius: 20px;
+      padding: 5px 15px;
+    }
+
+    .custom-check {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .sub-info {
+      background: #b4b4b4;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .sub-info i {
+      font-size: 2rem;
+      color: #0052cc;
+    }
+
+    .sub-info .col {
+      padding: 20px;
+    }
+    .main-footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #ccc;
+      padding: 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .main-footer .footer-left {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .main-footer .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .main-footer h4 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .main-footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-footer ul li {
+      margin-bottom: 5px;
+    }
+
+    footer.copyright {
+      text-align: center;
+      padding: 10px;
+      background-color: #111;
+      color: #aaa;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand" href="#">YoungSKY</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#">✈ Vuelos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">🚗 Reservas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">🚘 Historial</a></li>
+      </ul>
+      <div class="d-flex align-items-center">
+        <a href="#" class="btn me-2" style="background-color: #686868; color: white;">Cerrar sesión</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Imagen de fondo y título -->
+  <div class="hero">
+    <h1 class="display-5 fw-bold">Las mejores ofertas de vuelos de donde sea<br>a cualquier lugar</h1>
+  </div>
+
+  <!-- Formulario de búsqueda -->
+  <div class="search-box container-fluid">
+    <form class="row g-2 text-white">
+      <div class="col-12 d-flex gap-3 mb-2">
+        <div class="form-check form-check-inline text-white">
+          <input class="form-check-input" type="radio" name="tipo" checked>
+          <label class="form-check-label">Redondo</label>
+        </div>
+        <div class="form-check form-check-inline text-white">
+          <input class="form-check-input" type="radio" name="tipo">
+          <label class="form-check-label">Solo ida</label>
+        </div>
+        <div class="form-check form-check-inline text-white">
+          <input class="form-check-input" type="radio" name="tipo">
+          <label class="form-check-label">Varias ciudades</label>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label">Desde</label>
+        <input type="text" class="form-control" placeholder="México (MX)">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Hacia</label>
+        <input type="text" class="form-control" placeholder="Ciudad o país">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Salida</label>
+        <input type="date" class="form-control" value="2025-06-17">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Regreso</label>
+        <input type="date" class="form-control" value="2025-06-24">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Viajeros y clase</label>
+        <input type="text" class="form-control" placeholder="1 adulto, Económica">
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button class="btn btn-primary w-100">Buscar</button>
+      </div>
+
+      <div class="col-12 d-flex gap-4 mt-2">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="aeropuerto-cerca">
+          <label class="form-check-label custom-check" for="aeropuerto-cerca">
+            Añadir aeropuertos cercanos
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="solo-directo">
+          <label class="form-check-label custom-check" for="solo-directo">
+            Solo vuelos directos
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Información inferior -->
+  <div class="sub-info container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <i class="bi bi-airplane"></i>
+        <p><strong>Explora las mejores ofertas de viajes desde cualquier lugar</strong></p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-layers"></i>
+        <p>Compara más de 1000 proveedores y encuentra opciones más económicas o rápidas</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-calendar-range"></i>
+        <p>Descubre cuándo es mejor viajar y activa alertas de precios</p>
+      </div>
+    </div>
+  </div>
+  <div class="main-footer">
+    <div class="footer-left">
+      México · Español (MX) · MXN
+    </div>
+    <div class="footer-column">
+      <ul>
+        <li>Ayuda</li>
+        <li>Configuración de privacidad</li>
+        <li>Iniciar sesión</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <ul>
+        <li>Política de cookies</li>
+        <li>Política de privacidad</li>
+        <li>Términos de servicio</li>
+        <li>Información de la empresa</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <ul>
+        <li>Explorar</li>
+        <li>Compañía</li>
+        <li>Partners</li>
+        <li>Viajes</li>
+        <li>Sitios internacionales</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="copyright">
+    © 2025 YoungSky – Tu aventura comienza aquí ✈️
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
